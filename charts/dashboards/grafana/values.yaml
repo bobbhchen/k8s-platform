@@ -1,0 +1,7 @@
+# Default values for standalone grafana wrapper chart
+# These values will be passed to the upstream grafana chart
+
+grafana:
+# Upstream grafana chart values go here
+# Use this chart when you need more Grafana configuration
+# than provided by kube-prometheus-stack

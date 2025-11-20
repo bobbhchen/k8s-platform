@@ -1,0 +1,10 @@
+# Default values for prometheus-stack wrapper chart
+# These values will be passed to the upstream kube-prometheus-stack chart
+
+kube-prometheus-stack:
+  # Upstream kube-prometheus-stack chart values go here
+  # Override with environment-specific values
+
+  # Enable Grafana by default
+  grafana:
+    enabled: true

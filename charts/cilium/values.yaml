@@ -1,0 +1,6 @@
+# Default values for cilium wrapper chart
+# These values will be passed to the upstream cilium chart
+
+cilium:
+  # Upstream cilium chart values go here
+  # Override with environment-specific values

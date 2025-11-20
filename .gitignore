@@ -1,0 +1,20 @@
+# Helm dependency management
+**/Chart.lock
+**/charts/*.tgz
+# Exclude downloaded dependency charts but keep our custom charts structure
+charts/*/charts/
+charts/dashboards/*/charts/
+
+# Temporary files
+*.tmp
+*.swp
+*~
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db

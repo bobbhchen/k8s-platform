@@ -1,0 +1,73 @@
+# Prometheus stack configuration for dev environment
+kube-prometheus-stack:
+  # Prometheus configuration
+  prometheus:
+    enabled: true
+    prometheusSpec:
+      retention: 7d
+      resources:
+        limits:
+          memory: 2Gi
+        requests:
+          cpu: 200m
+          memory: 512Mi
+      storageSpec:
+        volumeClaimTemplate:
+          spec:
+            accessModes: ["ReadWriteOnce"]
+            resources:
+              requests:
+                storage: 10Gi
+
+  # Grafana configuration
+  grafana:
+    enabled: true
+    adminPassword: "admin-changeme"  # Placeholder - should be overridden or use secrets
+    service:
+      type: ClusterIP
+
+    # Ingress for Grafana
+    ingress:
+      enabled: true
+      ingressClassName: nginx
+      hosts:
+        - grafana.dev.example.com
+      paths:
+        - /
+      pathType: Prefix
+
+    # Resource limits for dev environment
+    resources:
+      limits:
+        memory: 256Mi
+      requests:
+        cpu: 100m
+        memory: 128Mi
+
+  # Alertmanager configuration
+  alertmanager:
+    enabled: true
+    alertmanagerSpec:
+      resources:
+        limits:
+          memory: 256Mi
+        requests:
+          cpu: 50m
+          memory: 128Mi
+
+  # Node exporter
+  nodeExporter:
+    enabled: true
+
+  # Kube state metrics
+  kubeStateMetrics:
+    enabled: true
+
+  # Prometheus operator
+  prometheusOperator:
+    resources:
+      limits:
+        memory: 256Mi
+      requests:
+        cpu: 100m
+        memory: 128Mi

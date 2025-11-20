@@ -1,0 +1,6 @@
+# Default values for ingress-nginx wrapper chart
+# These values will be passed to the upstream ingress-nginx chart
+
+ingress-nginx:
+  # Upstream ingress-nginx chart values go here
+  # Override with environment-specific values

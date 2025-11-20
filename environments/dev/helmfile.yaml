@@ -1,0 +1,46 @@
+# Helmfile configuration for dev environment
+environments:
+  dev:
+    values:
+      - environment: dev
+
+---
+repositories:
+  # Upstream chart repositories
+  - name: cilium
+    url: https://helm.cilium.io/
+  - name: ingress-nginx
+    url: https://kubernetes.github.io/ingress-nginx
+  - name: prometheus-community
+    url: https://prometheus-community.github.io/helm-charts
+  - name: grafana
+    url: https://grafana.github.io/helm-charts
+
+releases:
+  # Cilium CNI
+  - name: cilium
+    namespace: kube-system
+    chart: ../../charts/cilium
+    values:
+      - values-cilium.yaml
+    needs:
+      []
+
+  # Ingress-nginx controller
+  - name: ingress-nginx
+    namespace: ingress-nginx
+    chart: ../../charts/ingress-nginx
+    values:
+      - values-ingress-nginx.yaml
+    needs:
+      - kube-system/cilium
+
+  # Prometheus stack (Prometheus + Grafana)
+  - name: prometheus-stack
+    namespace: observability
+    chart: ../../charts/prometheus-stack
+    values:
+      - values-prometheus.yaml
+    needs:
+      - kube-system/cilium
+      - ingress-nginx/ingress-nginx

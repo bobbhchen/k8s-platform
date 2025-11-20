@@ -1,0 +1,11 @@
+apiVersion: v2
+name: grafana
+description: Wrapper chart for standalone Grafana deployment (for advanced configuration beyond kube-prometheus-stack)
+type: application
+version: 0.1.0
+appVersion: "10.2.3"
+
+dependencies:
+  - name: grafana
+    version: "7.0.17"
+    repository: "https://grafana.github.io/helm-charts"

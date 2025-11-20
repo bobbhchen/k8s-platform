@@ -1,0 +1,33 @@
+# Cilium configuration for dev environment
+cilium:
+  # Enable standard CNI mode
+  cni:
+    install: true
+
+  # Enable IPv4
+  ipv4:
+    enabled: true
+
+  # Enable IPv6 support (optional)
+  ipv6:
+    enabled: false
+
+  # Operator configuration
+  operator:
+    replicas: 1
+
+  # Enable Hubble for observability (optional but useful in dev)
+  hubble:
+    enabled: true
+    relay:
+      enabled: true
+    ui:
+      enabled: true
+
+  # Resource limits for dev environment
+  resources:
+    limits:
+      memory: 500Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
